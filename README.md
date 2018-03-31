@@ -1,3 +1,5 @@
 # README #
 
-The purpose of this project is to define a useful starting point for developing small to medium-sized static websites while utilizing modern technologies such as SASS, Browser Sync, code linting, and templating using Nunjucks. 
+The purpose of this project is to define a useful starting point for developing small to medium-sized static websites while utilizing modern technologies such as SASS, Browser Sync, code linting, and templating using Nunjucks.
+
+To get started, simply clone this repo into the directory of your choice and run `gulp`
