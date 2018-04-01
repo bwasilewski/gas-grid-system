@@ -8,6 +8,9 @@ const concat        = require('gulp-concat')
 const rename        = require('gulp-rename')
 const uglify        = require('gulp-uglify-es').default
 const del           = require('del')
+const plumber       = require('gulp-plumber')
+const autoprefixer  = require('gulp-autoprefixer')
+const clean         = require('gulp-clean-css')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const siteconfig    = {
   title: 'Gimme A Site - Websites for your business',
@@ -18,8 +21,12 @@ gulp.task('clean', del.bind(null, ['dist']));
 
 gulp.task('sass', () => {
   return gulp.src('src/scss/**/*.scss')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write('.'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(clean({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist/css'))
     .pipe(browsersync.reload({stream:true, match: '**/*.css'}));
 })
