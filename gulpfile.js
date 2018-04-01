@@ -4,6 +4,7 @@ const sass          = require('gulp-sass')
 const sourcemaps    = require('gulp-sourcemaps')
 const browsersync   = require('browser-sync')
 const jshint        = require('gulp-jshint')
+const eslint        = require('gulp-eslint')
 const concat        = require('gulp-concat')
 const rename        = require('gulp-rename')
 const uglify        = require('gulp-uglify-es').default
@@ -11,10 +12,15 @@ const del           = require('del')
 const plumber       = require('gulp-plumber')
 const autoprefixer  = require('gulp-autoprefixer')
 const clean         = require('gulp-clean-css')
+const babel         = require('gulp-babel')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const siteconfig    = {
   title: 'Gimme A Site - Websites for your business',
   contact: 'benwasilewski@gmail.com'
+}
+
+function errorHandler(response) {
+  console.log('There was an error: ', response)
 }
 
 gulp.task('clean', del.bind(null, ['dist']));
@@ -43,14 +49,29 @@ gulp.task('templates', () => {
 
 gulp.task('js-plugins', () => {
   return gulp.src(jsplugins)
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(sourcemaps.init())
+    .pipe(eslint({
+      rules: {
+        globals: ['jQuery', '$'],
+        envs: ['browser'],
+      },
+      parser: 'babel-eslint'
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    .pipe(babel({
+      presets: ['env'],
+      plugins: ['syntax-object-rest-spread']
+    }).on('error', errorHandler))
+    .pipe(uglify())
     .pipe(concat('plugins.js'))
+    .pipe(rename('plugins.min.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/js'))
 })
 
 gulp.task('js-main', () => {
-  return gulp.src('src/js/*.js')
+  return gulp.src('src/js/vendors/**/*.js', '!node_modules/**')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulp.dest('./dist/js'))
