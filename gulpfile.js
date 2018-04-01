@@ -7,12 +7,14 @@ const jshint        = require('gulp-jshint')
 const concat        = require('gulp-concat')
 const rename        = require('gulp-rename')
 const uglify        = require('gulp-uglify-es').default
-const pump          = require('pump')
+const del           = require('del')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const siteconfig    = {
   title: 'Gimme A Site - Websites for your business',
   contact: 'benwasilewski@gmail.com'
 }
+
+gulp.task('clean', del.bind(null, ['dist']));
 
 gulp.task('sass', () => {
   return gulp.src('src/scss/**/*.scss')
@@ -34,8 +36,8 @@ gulp.task('templates', () => {
 
 gulp.task('js-plugins', () => {
   return gulp.src(jsplugins)
-    // .pipe(jshint())
-    // .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('plugins.js'))
     .pipe(gulp.dest('dist/js'))
 })
