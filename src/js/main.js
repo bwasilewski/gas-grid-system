@@ -1,6 +1,5 @@
-(function ($, window, document, undefined) {
-  // 'use strict';
+const $ = require('jQuery');
+const bootstrap = require('bootstrap')
 
-  console.log('Here we go!');
-
-})(jQuery, window, document);
+console.log('jQuery: ', $)
+console.log('Bootstrap: ', bootstrap)
