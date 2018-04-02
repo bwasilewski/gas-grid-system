@@ -1,9 +1,13 @@
 <footer>
-  <nav>
-    <ul>
-      {% include "partials/navigation.html" %}
-    </ul>
-  </nav>
+  <div class="container px-0">
+    <nav>
+      <ul class="nav">
+        {% include "partials/navigation.html" %}
+      </ul>
+    </nav>
+
+    <p class="px-1">&copy; {{ currentyear }} {{ client }}</p>
+  </div>
 </footer>
 
 <!-- <script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script> -->
