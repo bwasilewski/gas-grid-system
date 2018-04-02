@@ -19,7 +19,21 @@ const jsplugins     = 'src/js/vendors/**/*.js'
 const taskconfigs   = {
   site: {
     title: 'Gimme A Site - Websites for your business',
-    contact: 'benwasilewski@gmail.com'
+    contact: 'benwasilewski@gmail.com',
+    navigation: [
+      {
+        label: 'Home',
+        path: '/index.html'
+      },
+      {
+        label: 'About',
+        path: '/about.html'
+      },
+      {
+        label: 'Contact',
+        path: '/contact.html'
+      }
+    ]
   }
 }
 
@@ -85,5 +99,4 @@ gulp.task('default', ['start-server'], () => {
   gulp.watch('src/templates/**/*.html', ['templates'])
   gulp.watch('src/js/*.js', ['scripts'])
   gulp.watch(['./dist/*.html', './dist/css/*.css', './dist/js/**/*.js'], ['bs-reload'])
-
 })
