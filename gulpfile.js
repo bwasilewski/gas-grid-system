@@ -18,8 +18,11 @@ const buffer        = require('vinyl-buffer')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const taskconfigs   = {
   site: {
-    title: 'Gimme A Site - Websites for your business',
+    title: 'Gimme a Site - Websites for your business',
+    description: '',
     contact: 'benwasilewski@gmail.com',
+    client: 'Gimme a Site.com',
+    currentyear: new Date().getFullYear(),
     navigation: [
       {
         label: 'Home',
@@ -44,9 +47,9 @@ gulp.task('sass', () => {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('.'))
     .pipe(rename({suffix: '.min'}))
     .pipe(clean({compatibility: 'ie8'}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css'))
 })
 
