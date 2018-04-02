@@ -66,7 +66,8 @@ gulp.task('browser-sync', () => {
     server: {
       baseDir: 'dist'
     },
-    ghostMode: true
+    ghostMode: true,
+    watchEvents: ['change', 'add', 'unlink', 'addDir', 'unlinkDir']
   })
 })
 
