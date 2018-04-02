@@ -1,8 +1,6 @@
-@import "./node_modules/bootstrap/scss/bootstrap";
+$font-family-base: 'Crete Round', serif;
 
-body {
-  font-family: 'Crete Round', serif;
-}
+@import "./node_modules/bootstrap/scss/bootstrap";
 
 header {
   nav {
