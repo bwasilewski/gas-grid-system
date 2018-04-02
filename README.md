@@ -13,7 +13,14 @@ The purpose of this project is to define a useful starting point for developing 
 
 ## Getting started
 
-To get started, simply clone this repo into the directory of your choice and run `gulp`
+To get started, run the following commands:
+
+```
+$ yarn install
+$ gulp
+```
+
+That's it!
 
 ## Deployment
 
