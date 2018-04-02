@@ -42,6 +42,11 @@ const taskconfigs   = {
 
 gulp.task('clean', del.bind(null, ['dist']));
 
+gulp.task('favicon', () => {
+  return gulp.src('src/favicon.ico')
+    .pipe(gulp.dest('dist/'))
+})
+
 gulp.task('sass', () => {
   return gulp.src('src/scss/**/*.scss')
     .pipe(plumber())
@@ -92,7 +97,7 @@ gulp.task('bs-reload', () => {
   browsersync.reload()
 })
 
-gulp.task('start-server', sequence('clean', ['sass', 'templates', 'scripts'], 'browser-sync'))
+gulp.task('start-server', sequence('clean', 'favicon', ['sass', 'templates', 'scripts'], 'browser-sync'))
 
 gulp.task('default', ['start-server'], () => {
   // will need to convert this to gulp-watch eventually
