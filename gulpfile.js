@@ -34,7 +34,6 @@ gulp.task('sass', () => {
     .pipe(rename({suffix: '.min'}))
     .pipe(clean({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist/css'))
-    .pipe(browsersync.reload({stream:true, match: '**/*.css'}));
 })
 
 gulp.task('templates', () => {
@@ -44,7 +43,6 @@ gulp.task('templates', () => {
       data: taskconfigs.site
     }))
     .pipe(gulp.dest('./dist/'))
-    .pipe(browsersync.reload({stream:true}));
 })
 
 gulp.task('scripts', () => {
@@ -61,14 +59,14 @@ gulp.task('scripts', () => {
     .on('error', (error) => {console.log(error)})
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/js/'))
-    .pipe(browsersync.reload({stream:true, match: '**/*.js'}));
 })
 
 gulp.task('browser-sync', () => {
   browsersync.init(null, {
     server: {
       baseDir: 'dist'
-    }
+    },
+    ghostMode: true
   })
 })
 
@@ -85,4 +83,6 @@ gulp.task('default', ['start-server'], () => {
   gulp.watch('src/*.html', ['templates'])
   gulp.watch('src/templates/**/*.html', ['templates'])
   gulp.watch('src/js/*.js', ['scripts'])
+  gulp.watch(['./dist/*.html', './dist/css/*.css', './dist/js/**/*.js'], ['bs-reload'])
+
 })
