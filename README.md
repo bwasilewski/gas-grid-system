@@ -1,5 +1,26 @@
-# README #
+# Build Starter
 
-The purpose of this project is to define a useful starting point for developing small to medium-sized static websites while utilizing modern technologies such as SASS, Browser Sync, code linting, and templating using Nunjucks.
+The purpose of this project is to define a useful starting point for developing small to medium-sized static websites while utilizing modern technologies to automate common tasks.
+
+## Features
+
+- :fireworks: SASS compilation/minification and sourcemaps
+- :fire: HTML templating with Nunjucks
+- :sparkler: Browserify for frontend dependencies
+- :boom: JavaScript linting, minification and sourcemaps
+- :star: Live reloading and device mirroring with BrowserSync
+
+
+## Getting started
 
 To get started, simply clone this repo into the directory of your choice and run `gulp`
+
+## Deployment
+
+Currently, there are no gulp tasks configured to address the task of deployment to a production environment. Currently, the easiest way to deploy these projects is via [Surge.sh][109e8be1] or [Github Pages][e3ed3e6e]. Visit their respective sites for instructions on how they should be used.
+
+  [e3ed3e6e]: https://pages.github.com/ "Github Pages"
+
+
+
+  [109e8be1]: http://surge.sh "Surge"
