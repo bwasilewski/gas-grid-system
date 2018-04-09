@@ -2,7 +2,8 @@ $font-family-base: 'Crete Round', serif;
 
 @import "./node_modules/bootstrap/scss/bootstrap";
 
-header {
+.header,
+.footer {
   nav {
     .nav-link {
       color: #fff;
@@ -15,10 +16,4 @@ header {
       }
     }
   }
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }

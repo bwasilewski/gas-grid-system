@@ -35,6 +35,14 @@ const taskconfigs   = {
       {
         label: 'Contact',
         path: '/contact.html'
+      },
+      {
+        label: 'Components',
+        path: '/components/'
+      },
+      {
+        label: 'Layout',
+        path: '/layout/'
       }
     ]
   }
@@ -59,7 +67,7 @@ gulp.task('sass', () => {
 })
 
 gulp.task('templates', () => {
-  return gulp.src('src/*.html')
+  return gulp.src(['src/**/*.html', '!src/templates/**/*.html'])
     .pipe(nunjucks({
       path: ['src/templates/'],
       data: taskconfigs.site
@@ -103,7 +111,7 @@ gulp.task('default', ['start-server'], () => {
   // will need to convert this to gulp-watch eventually
   // or projects may become too slow to generate
   gulp.watch('src/scss/**/*.scss', ['sass'])
-  gulp.watch('src/*.html', ['templates'])
+  gulp.watch('src/**/*.html', ['templates'])
   gulp.watch('src/templates/**/*.html', ['templates'])
   gulp.watch('src/js/*.js', ['scripts'])
   gulp.watch(['./dist/*.html', './dist/css/*.css', './dist/js/**/*.js'], ['bs-reload'])
