@@ -13,10 +13,13 @@ The purpose of this project is to define a useful starting point for developing 
 
 ## Getting started
 
-To get started, run the following commands:
+To get started, run the following commands (libjpeg and libpng needed for image processing):
 
 ```
+$ git clone https://github.com/bwasilewski/build-starter.git
+$ cd build-starter
 $ yarn install
+$ brew install libjpeg libpng
 $ gulp
 ```
 
