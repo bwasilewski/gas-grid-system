@@ -15,6 +15,7 @@ const browserify    = require('browserify')
 const babelify      = require('babelify')
 const source        = require('vinyl-source-stream')
 const buffer        = require('vinyl-buffer')
+const image         = require('gulp-image')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const taskconfigs   = {
   site: {
@@ -53,6 +54,12 @@ gulp.task('clean', del.bind(null, ['dist']));
 gulp.task('favicon', () => {
   return gulp.src('src/favicon.ico')
     .pipe(gulp.dest('dist/'))
+})
+
+gulp.task('images', () => {
+  gulp.src('./src/images/*')
+    .pipe(image())
+    .pipe(gulp.dest('./dist/images'))
 })
 
 gulp.task('sass', () => {
@@ -105,7 +112,7 @@ gulp.task('bs-reload', () => {
   browsersync.reload()
 })
 
-gulp.task('start-server', sequence('clean', 'favicon', ['sass', 'templates', 'scripts'], 'browser-sync'))
+gulp.task('start-server', sequence('clean', ['favicon', 'images'], ['sass', 'templates', 'scripts'], 'browser-sync'))
 
 gulp.task('default', ['start-server'], () => {
   // will need to convert this to gulp-watch eventually
