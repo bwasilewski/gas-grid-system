@@ -19,10 +19,10 @@ const image         = require('gulp-image')
 const jsplugins     = 'src/js/vendors/**/*.js'
 const taskconfigs   = {
   site: {
-    title: 'Gimme a Site - Websites for your business',
+    title: 'Grid System',
     description: '',
     contact: 'benwasilewski@gmail.com',
-    client: 'Gimme a Site.com',
+    client: 'Ben Wasilewski',
     currentyear: new Date().getFullYear(),
     navigation: [
       {
